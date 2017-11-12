@@ -45,6 +45,7 @@
         <configuration>
           <configLocation>google_checks.xml</configLocation>
           <includeTestSourceDirectory>true</includeTestSourceDirectory>
+          <testSourceDirectory>src/test</testSourceDirectory>
         </configuration>
       </plugin>
     </plugins>
