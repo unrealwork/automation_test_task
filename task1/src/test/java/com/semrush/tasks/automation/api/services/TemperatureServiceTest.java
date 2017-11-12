@@ -36,7 +36,7 @@ public class TemperatureServiceTest {
     Response<WaterEnvironment> response = call.execute();
     final WaterState actualState = response.body().getState();
     final String assertMessage = MessageFormat.format(
-        "Incorrect response http status for following API request {0}.\n Expected : {1}."
+        "Incorrect state of water environment for following API request {0}.\n Expected : {1}."
             + " \n Actual: {2}", call.request(), expectedState, actualState);
     Assert.assertEquals(actualState, expectedState, assertMessage);
 
@@ -62,7 +62,7 @@ public class TemperatureServiceTest {
         {24, WaterState.Water},
         {100, WaterState.Steam},
         {Integer.MAX_VALUE, WaterState.Steam},
-        {Integer.MAX_VALUE, WaterState.Steam},
+        {Integer.MIN_VALUE, WaterState.Ice},
         {-100, WaterState.Ice},
     };
   }

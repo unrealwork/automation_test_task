@@ -14,6 +14,11 @@
     <testng.version>6.11</testng.version>
     <retrofit.version>2.3.0</retrofit.version>
     <logback.version>1.2.3</logback.version>
+    <commons-beanutils.version>1.9.3</commons-beanutils.version>
+    <commons-configuration2.version>2.0</commons-configuration2.version>
+    <converter-jackson.version>2.3.0</converter-jackson.version>
+    <maven-compiler-plugin.version>2.5.1</maven-compiler-plugin.version>
+    <maven-checkstyle-plugin.version>2.17</maven-checkstyle-plugin.version>
   </properties>
 
   <build>
@@ -21,7 +26,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.5.1</version>
+        <version>${maven-compiler-plugin.version}</version>
         <configuration>
           <source>${java.version}</source>
           <target>${java.version}</target>
@@ -36,7 +41,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>2.17</version>
+        <version>${maven-checkstyle-plugin.version}</version>
         <configuration>
           <configLocation>google_checks.xml</configLocation>
           <includeTestSourceDirectory>true</includeTestSourceDirectory>
@@ -65,7 +70,7 @@
     <dependency>
       <groupId>org.codehaus.janino</groupId>
       <artifactId>janino</artifactId>
-      <version>2.5.16</version>
+      <version>${maven-compiler-plugin.version}6</version>
     </dependency>
 
     <!--testing-->
@@ -83,19 +88,19 @@
     <dependency>
       <groupId>com.squareup.retrofit2</groupId>
       <artifactId>converter-jackson</artifactId>
-      <version>2.3.0</version>
+      <version>${converter-jackson.version}</version>
     </dependency>
 
     <!--config-->
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-configuration2</artifactId>
-      <version>2.0</version>
+      <version>${commons-configuration2.version}</version>
     </dependency>
     <dependency>
       <groupId>commons-beanutils</groupId>
       <artifactId>commons-beanutils</artifactId>
-      <version>1.9.3</version>
+      <version>${commons-beanutils.version}</version>
     </dependency>
   </dependencies>
 </project>
