@@ -46,6 +46,9 @@ public class TemperatureServiceTest {
   private Object[][] statusProvider() {
     return new Object[][]{
         {"0", 200},
+        {"0.000001", 200},
+        {"", 200},
+        {"1.1", 200},
         {"100", 200},
         {"-100", 200},
         {"abc", 400}
@@ -58,6 +61,8 @@ public class TemperatureServiceTest {
         {0, WaterState.Ice},
         {24, WaterState.Water},
         {100, WaterState.Steam},
+        {Integer.MAX_VALUE, WaterState.Steam},
+        {Integer.MAX_VALUE, WaterState.Steam},
         {-100, WaterState.Ice},
     };
   }
