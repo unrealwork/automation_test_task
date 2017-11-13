@@ -22,13 +22,15 @@ public class LoginPage extends BasePage {
   }
 
   public LoginPage fillEmail(String email) {
+    emailField.click();
     emailField.setValue(email);
     return this;
   }
 
 
   public LoginPage fillPassword(String password) {
-    passwordField.setValue(password);
+    passwordField.click();
+    passwordField.sendKeys(password);
     return this;
   }
 
