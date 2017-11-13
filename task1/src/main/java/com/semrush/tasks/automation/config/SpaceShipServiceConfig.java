@@ -29,7 +29,7 @@ public final class SpaceShipServiceConfig {
     /**
      * Server's property key.
      */
-    private static final String SERVER = "server";
+    private static final String SERVER = "server.url";
   }
 
   /**
