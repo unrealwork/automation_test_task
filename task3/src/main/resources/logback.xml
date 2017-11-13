@@ -1,0 +1,24 @@
+<configuration>
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+      <evaluator>
+        <expression>
+          return logger.contains("org.apache.http") ||
+          logger.equals("org.jvnet.hk2.logger");
+        </expression>
+      </evaluator>
+      <onMatch>DENY</onMatch>
+    </filter>
+    <encoder>
+      <!-- no colors -->
+      <pattern>%-5level %d{HH:mm:ss.SSS} [%thread] [%class] %n%msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <logger name="org.glassfish.jersey.internal.util" level="ERROR"/>
+
+  <root level="${loggerLevel}">
+    <!--<root level="info">-->
+    <appender-ref ref="STDOUT"/>
+  </root>
+</configuration>

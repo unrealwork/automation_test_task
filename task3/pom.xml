@@ -12,6 +12,9 @@
     <java.version>1.8</java.version>
     <testng.version>6.1.1</testng.version>
     <selenide.version>4.8</selenide.version>
+    <commons-beanutils.version>1.9.3</commons-beanutils.version>
+    <commons-configuration2.version>2.0</commons-configuration2.version>
+    <okhttp.version>3.9.0</okhttp.version>
   </properties>
 
   <dependencies>
@@ -28,6 +31,24 @@
       <artifactId>testng</artifactId>
       <version>${testng.version}</version>
       <scope>test</scope>
+    </dependency>
+
+    <!--config-->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-configuration2</artifactId>
+      <version>${commons-configuration2.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-beanutils</groupId>
+      <artifactId>commons-beanutils</artifactId>
+      <version>${commons-beanutils.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.squareup.okhttp3</groupId>
+      <artifactId>okhttp</artifactId>
+      <version>${okhttp.version}</version>
     </dependency>
   </dependencies>
 
