@@ -18,4 +18,13 @@ public interface TemperatureService {
    */
   @GET("/")
   Call<WaterEnvironment> getEnvironment(@Query("temperature") String value);
+
+  /**
+   * Retrieve spaceship water by temperature in raw format.
+   *
+   * @param value - string value  of temperature.
+   * @return WaterEnvironment class instance.
+   */
+  @GET("/")
+  Call<Void> getEnvironmentRaw(@Query("temperature") String value);
 }
