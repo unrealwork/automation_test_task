@@ -66,4 +66,31 @@ public class TemperatureServiceTest {
 
     Assert.assertEquals(actualState, expectedState, assertMessage);
   }
+
+
+  @Test(description = "Test validation of incorrect temperature value"
+      + "temperature",
+      dataProviderClass = TemperatureServiceDataProvider.class,
+      dataProvider = "incorrectStatesProvider")
+  public void testIncorrectStates(final Double temperature, final String reason)
+      throws IOException {
+    final int badRequestCode = 400;
+
+    //Act
+    Call<WaterEnvironment> call = service
+        .getEnvironment(temperature.toString());
+
+    // Assert
+    final String assertMessageTemplate = String.format(
+        "The value should be recognized as bad request "
+            + "request {0}."
+            + "%nTemperature: {1}.%n Reason: {2}.%n "
+            + "Expected : {3}.%n Actual: {4}");
+    int actualCode = call.execute().code();
+    final String assertMessage = MessageFormat.format(
+        assertMessageTemplate,
+        call.request(), temperature, reason, actualCode, badRequestCode);
+
+    Assert.assertEquals(actualCode, badRequestCode, assertMessage);
+  }
 }
