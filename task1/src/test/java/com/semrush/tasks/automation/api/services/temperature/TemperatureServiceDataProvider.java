@@ -29,4 +29,12 @@ public class TemperatureServiceDataProvider {
         {120, WaterState.Steam, "The temperature is typical for steam"}
     };
   }
+
+  @DataProvider(name = "incorrectStatesProvider", parallel = true)
+  public Object[][] incorrectStatesProvider() {
+    return new Object[][]{
+        {-273.5d , "The temperature less than absolute zero."},
+        {1.41680571e32d, "The temperature grater than absolute hot"}
+    };
+  }
 }
