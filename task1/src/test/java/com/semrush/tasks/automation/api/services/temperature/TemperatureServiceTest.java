@@ -9,8 +9,8 @@ import java.text.MessageFormat;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import retrofit2.Call;
-import retrofit2.Response;
 
+@Test(description = "Tests for Temperature Service on SpaceShip")
 public class TemperatureServiceTest {
 
   private TemperatureService service = ShipServiceManager
@@ -20,20 +20,21 @@ public class TemperatureServiceTest {
   @Test(description = "Test correctness of HTTP statuses for different inputs",
       dataProviderClass = TemperatureServiceDataProvider.class,
       dataProvider = "statusProvider")
-  public void testStatus(String value, int expectedCode, String reasonTemplate)
+  public void testStatus(final String value, final int expectedCode,
+      final String reason)
       throws IOException {
     //Act
-    Call<WaterEnvironment> call = service.getEnvironment(value);
-    Response<WaterEnvironment> response = call.execute();
-    final int actual = response.code();
+    final Call<Void> call = service.getEnvironmentRaw(value);
+    final int actualCode = call.execute().code();
     //Assert
     final String assertMessageTemplate = String.format(
         "Incorrect response http status for following API request {0}.%n "
-            + "Reason: {1}%n Expected : {2}.%n Actual: {3}");
+            + "Value: {1}.%n Reason: {2}.%n Expected : {3}.%n Actual: {4}.%n");
     final String assertMessage = MessageFormat.format(
-        assertMessageTemplate, call.request(), expectedCode, actual);
+        assertMessageTemplate, call.request(), value, reason, expectedCode,
+        actualCode);
 
-    Assert.assertEquals(actual, expectedCode, assertMessage);
+    Assert.assertEquals(actualCode, expectedCode, assertMessage);
   }
 
 
@@ -41,23 +42,27 @@ public class TemperatureServiceTest {
       + "temperature",
       dataProviderClass = TemperatureServiceDataProvider.class,
       dataProvider = "correctStatesProvider")
-  public void testCorrectStates(Integer temperature, WaterState expectedState,
-      String reasonTemplate)
+  public void testCorrectStates(final Integer temperature,
+      final WaterState expectedState,
+      final String reason)
       throws IOException {
     //Act
-    final Call<WaterEnvironment> call = service
+    Call<WaterEnvironment> call = service
         .getEnvironment(temperature.toString());
-    final Response<WaterEnvironment> response = call.execute();
-    final WaterState actualState = response.body().getState();
+    final WaterState actualState = call
+        .execute()
+        .body()
+        .getState();
+
     // Assert
-    final String failReason = MessageFormat.format(reasonTemplate, temperature);
     final String assertMessageTemplate = String.format(
         "Incorrect state of water environment for following API "
             + "request {0}."
-            + "%n Reason: {1}%n Expected : {2}.%n Actual: {3}");
+            + "%nTemperature: {1}.%n Reason: {2}.%n "
+            + "Expected : {3}.%n Actual: {4}");
     final String assertMessage = MessageFormat.format(
         assertMessageTemplate,
-        call.request(), failReason, expectedState, actualState);
+        call.request(), temperature, reason, expectedState, actualState);
 
     Assert.assertEquals(actualState, expectedState, assertMessage);
   }

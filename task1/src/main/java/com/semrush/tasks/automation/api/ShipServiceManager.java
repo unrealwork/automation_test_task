@@ -46,13 +46,14 @@ public final class ShipServiceManager {
 
   /**
    * Get default configured Http Client.
+   *
    * @return the instance of client.
    */
   private static synchronized Retrofit getClient() {
     if (client == null) {
       client = new Retrofit.Builder()
-          .addConverterFactory(JacksonConverterFactory.create())
           .baseUrl(CONFIG.getServer())
+          .addConverterFactory(JacksonConverterFactory.create())
           .build();
     }
     return client;

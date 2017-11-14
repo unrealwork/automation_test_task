@@ -39,3 +39,18 @@ server.url=http://ntanygin.pythonanywhere.com/
 ```text
 mvn clean test
 ```
+
+#### Allure Report
+
+Для генерации отчета нужно выполнить следующую команду:
+
+```text
+mvn clean site
+```
+
+Затем можно просмотреть текущий отчет в браузере, страница будет открыта после 
+выполнения команды :
+
+```text
+mvn io.qameta.allure:allure-maven:serve
+```
