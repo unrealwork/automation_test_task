@@ -1,19 +1,27 @@
 package com.semrush.tasks.automated.ui.components;
 
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.not;
 import static com.codeborne.selenide.Selectors.byName;
-import static com.codeborne.selenide.Selenide.$;
 
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import com.semrush.tasks.automated.ui.config.ClientConfig;
 
 /**
- * API for actions available from LoginForm.
+ * API for actions available from LoginFormComponent.
  */
-public final class LoginForm {
+public final class LoginFormComponent extends AComponent {
+
+  /**
+   * Project's configuration.
+   */
+  private static ClientConfig config = ClientConfig.getDefault();
 
   /**
    * Default constructor.
    */
-  public LoginForm() {
+  public LoginFormComponent() {
     super();
   }
 
@@ -28,12 +36,21 @@ public final class LoginForm {
   }
 
   /**
+   * Authorize to system with default credentials.
+   */
+  public void authorize() {
+    authorize(config.getLogin(), config.getPassword());
+    new UserMenuComponent().loginButton()
+        .waitUntil(not(exist), config.getActionTimeout());
+  }
+
+  /**
    * Fill email field.
    *
    * @param email - email password.
-   * @return instance of {@link LoginForm}.
+   * @return instance of {@link LoginFormComponent}.
    */
-  public LoginForm fillEmail(final String email) {
+  public LoginFormComponent fillEmail(final String email) {
     emailField().setValue(email);
     return this;
   }
@@ -42,9 +59,9 @@ public final class LoginForm {
    * Fill password field.
    *
    * @param password - value of password.
-   * @return instance of {@link LoginForm}
+   * @return instance of {@link LoginFormComponent}
    */
-  public LoginForm fillPassword(final String password) {
+  public LoginFormComponent fillPassword(final String password) {
     passwordField().setValue(password);
     return this;
   }
@@ -56,13 +73,9 @@ public final class LoginForm {
     submitButton().submit();
   }
 
-  /**
-   * Containter which contains all elements of form.
-   *
-   * @return instance of {@link SelenideElement}
-   */
-  public SelenideElement container() {
-    return $("div.auth-popup");
+  @Override
+  public SelenideElement root() {
+    return Selenide.$("div.auth-popup");
   }
 
 
@@ -72,7 +85,7 @@ public final class LoginForm {
    * @return instance of {@link SelenideElement}
    */
   public SelenideElement emailField() {
-    return container().$(byName("email"));
+    return find(byName("email"));
   }
 
   /**
@@ -81,7 +94,7 @@ public final class LoginForm {
    * @return instance of {@link SelenideElement}
    */
   public SelenideElement passwordField() {
-    return container().$(byName("password"));
+    return find(byName("password"));
   }
 
   /**
@@ -90,6 +103,6 @@ public final class LoginForm {
    * @return instance of {@link SelenideElement}
    */
   public SelenideElement submitButton() {
-    return container().$("button.auth-form__button");
+    return find("button.auth-form__button");
   }
 }

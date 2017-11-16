@@ -9,12 +9,13 @@ import org.slf4j.LoggerFactory;
 /**
  * API of user menu.
  */
-public class UserMenu {
+public class UserMenuComponent {
 
   /**
    * Logger for this class.
    */
-  private static final Logger LOG = LoggerFactory.getLogger(UserMenu.class);
+  private static final Logger LOG = LoggerFactory
+      .getLogger(UserMenuComponent.class);
 
   /**
    * css selector for loginButton.
@@ -54,10 +55,10 @@ public class UserMenu {
   /**
    * Login form.
    *
-   * @return instance of LoginForm.
+   * @return instance of LoginFormComponent.
    */
-  public LoginForm loginForm() {
+  public LoginFormComponent loginForm() {
     loginButton().click();
-    return new LoginForm();
+    return new LoginFormComponent();
   }
 }

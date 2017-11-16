@@ -6,13 +6,13 @@ import static com.codeborne.selenide.Condition.not;
 
 import com.semrush.tasks.automated.ui.config.ClientConfig;
 import com.semrush.tasks.automated.ui.components.Components;
-import com.semrush.tasks.automated.ui.components.UserMenu;
+import com.semrush.tasks.automated.ui.components.UserMenuComponent;
 import org.testng.annotations.Test;
 
 /**
  * Contains tests for loginForm form behaviour.
  */
-public class LoginFormTest {
+public class LoginFormComponentTest {
 
   /**
    *
@@ -29,7 +29,7 @@ public class LoginFormTest {
       dataProviderClass = LoginFormDataProvider.class,
       dataProvider = "credentialsProvider")
   public void testLogin(final String login, final String password) {
-    UserMenu userMenu = Components.userMenu();
+    UserMenuComponent userMenu = Components.userMenu();
     //Action
     userMenu
         .loginForm()
