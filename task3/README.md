@@ -41,7 +41,7 @@ mvn -Dbrowser=chrome -Dsemrush.user.login=genius -Dsemrush.user.password=genius_
 Для запуска тестов следует использовать команду:
 
 ```text
-mvn -Dsemrush.user.login=your_email -Dsemrush.user.password=your_password clean test
+mvn clean test
 ```
 
 #### Allure Report
@@ -49,7 +49,7 @@ mvn -Dsemrush.user.login=your_email -Dsemrush.user.password=your_password clean 
 Для генерации отчета нужно выполнить следующую команду:
 
 ```text
-mvn clean site -D
+mvn clean site
 ```
 
 Затем можно просмотреть текущий отчет в браузере, страница будет открыта после 
