@@ -1,14 +1,15 @@
-package com.semrush.tasks.automated.ui.components;
+package com.semrush.tasks.automated.ui.components.projects;
 
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import com.semrush.tasks.automated.ui.components.AComponent;
 import com.semrush.tasks.automated.ui.model.Project;
 
 /**
  * Form for create Project.
  */
-public final class CreateProjectFormComponent extends AComponent {
+public final class ProjectCreateFormComponent extends AComponent {
 
   /**
    * Domain field' element.
@@ -35,7 +36,7 @@ public final class CreateProjectFormComponent extends AComponent {
    *
    * @return instance of {@link SelenideElement}
    */
-  public SelenideElement subminButton() {
+  public SelenideElement submitButton() {
     return find("span.s-btn__text");
   }
 
@@ -51,7 +52,7 @@ public final class CreateProjectFormComponent extends AComponent {
    * @param name name of project.
    * @return this component;
    */
-  public CreateProjectFormComponent fillName(final String name) {
+  public ProjectCreateFormComponent fillName(final String name) {
     nameField().setValue(name);
     return this;
   }
@@ -63,7 +64,7 @@ public final class CreateProjectFormComponent extends AComponent {
    * @param domain name of project.
    * @return this component;
    */
-  public CreateProjectFormComponent fillDomain(final String domain) {
+  public ProjectCreateFormComponent fillDomain(final String domain) {
     domainField().setValue(domain);
     return this;
   }
@@ -72,7 +73,7 @@ public final class CreateProjectFormComponent extends AComponent {
    * Submit create button.
    */
   public void submit() {
-    subminButton().click();
+    submitButton().click();
   }
 
   /**

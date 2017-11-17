@@ -1,5 +1,6 @@
 package com.semrush.tasks.automated.ui.components;
 
+import com.semrush.tasks.automated.ui.components.projects.ProjectsComponent;
 import com.semrush.tasks.automated.ui.utils.PageUtils;
 
 
@@ -34,6 +35,15 @@ public final class Components {
    */
   public static DashboardComponent dashboard() {
     return PageUtils.open("dashboard", DashboardComponent.class);
+  }
+
+  /**
+   * ProjectsComponent Component page creation.
+   *
+   * @return DashboardComponent.
+   */
+  public static ProjectsComponent projects() {
+    return PageUtils.open("projects", ProjectsComponent.class);
   }
 
   /**

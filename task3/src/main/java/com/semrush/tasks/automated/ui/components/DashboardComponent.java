@@ -2,6 +2,8 @@ package com.semrush.tasks.automated.ui.components;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import com.semrush.tasks.automated.ui.components.projects.ProjectCreateFormComponent;
+import com.semrush.tasks.automated.ui.components.projects.ProjectListItemComponent;
 
 /**
  *
@@ -11,21 +13,21 @@ public final class DashboardComponent extends AComponent {
   /**
    * Open adding form on dashboard page.
    *
-   * @return comonent {@link CreateProjectFormComponent}
+   * @return comonent {@link ProjectCreateFormComponent}
    */
-  public CreateProjectFormComponent createProject() {
+  public ProjectCreateFormComponent createProject() {
     createProjectButton().click();
-    return new CreateProjectFormComponent();
+    return new ProjectCreateFormComponent();
   }
 
   /**
    * Open project list dashboard page.
    *
-   * @return component {@link ProjectComponent}
+   * @return component {@link ProjectListItemComponent}
    */
-  public ProjectComponent listProject() {
+  public ProjectListItemComponent listProject() {
     listProjectButton().click();
-    return new ProjectComponent();
+    return new ProjectListItemComponent();
   }
 
   /**

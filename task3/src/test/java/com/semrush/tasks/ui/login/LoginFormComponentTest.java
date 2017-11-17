@@ -4,9 +4,11 @@ package com.semrush.tasks.ui.login;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.not;
 
-import com.semrush.tasks.automated.ui.config.ClientConfig;
+import com.codeborne.selenide.Selenide;
 import com.semrush.tasks.automated.ui.components.Components;
 import com.semrush.tasks.automated.ui.components.UserMenuComponent;
+import com.semrush.tasks.automated.ui.config.ClientConfig;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
 /**
@@ -38,5 +40,15 @@ public class LoginFormComponentTest {
     userMenu.loginButton().waitUntil(not(exist)
             .because("The user menu should be turned into authorized mode"),
         config.getActionTimeout());
+  }
+
+
+  /**
+   * Clean up environment.
+   */
+  @AfterClass
+  public void tearDown() {
+    Selenide.clearBrowserCookies();
+    Selenide.clearBrowserLocalStorage();
   }
 }
