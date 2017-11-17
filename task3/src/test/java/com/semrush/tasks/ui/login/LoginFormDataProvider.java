@@ -4,7 +4,7 @@ import com.semrush.tasks.automated.ui.config.ClientConfig;
 import org.testng.annotations.DataProvider;
 
 /**
- * Contains sets of data for tests from {@link LoginFormTest}.
+ * Contains sets of data for tests from {@link LoginFormComponentTest}.
  */
 public final class LoginFormDataProvider {
 

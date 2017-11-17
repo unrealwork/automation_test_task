@@ -4,15 +4,19 @@ package com.semrush.tasks.ui.login;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.not;
 
-import com.semrush.tasks.automated.ui.config.ClientConfig;
 import com.semrush.tasks.automated.ui.components.Components;
-import com.semrush.tasks.automated.ui.components.UserMenu;
+import com.semrush.tasks.automated.ui.components.UserMenuComponent;
+import com.semrush.tasks.automated.ui.config.ClientConfig;
+import com.semrush.tasks.ui.testutils.AuthorizationUtils;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
  * Contains tests for loginForm form behaviour.
  */
-public class LoginFormTest {
+@Test(groups = {"unauthorized"})
+public class LoginFormComponentTest {
 
   /**
    *
@@ -29,7 +33,7 @@ public class LoginFormTest {
       dataProviderClass = LoginFormDataProvider.class,
       dataProvider = "credentialsProvider")
   public void testLogin(final String login, final String password) {
-    UserMenu userMenu = Components.userMenu();
+    UserMenuComponent userMenu = Components.userMenu();
     //Action
     userMenu
         .loginForm()
@@ -38,5 +42,14 @@ public class LoginFormTest {
     userMenu.loginButton().waitUntil(not(exist)
             .because("The user menu should be turned into authorized mode"),
         config.getActionTimeout());
+  }
+
+  /**
+   * Clean authorization.
+   */
+  @BeforeMethod
+  @AfterMethod
+  public void cleanAuthorization() {
+    AuthorizationUtils.logout();
   }
 }
