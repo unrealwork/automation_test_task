@@ -74,8 +74,8 @@ public final class ClientConfig {
       instance.actionTimeout =
           Long.parseLong(getProperty(PropertyKeys.ACTION_TIMEOUT))
               * TimeUnit.SECONDS.toMillis(1L);
+      LOG.info("SpaceShipServiceConfig was successfully loaded: {}", instance);
     }
-    LOG.info("SpaceShipServiceConfig was successfully loaded: {}", instance);
     return instance;
   }
 

@@ -4,16 +4,18 @@ package com.semrush.tasks.ui.login;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.not;
 
-import com.codeborne.selenide.Selenide;
 import com.semrush.tasks.automated.ui.components.Components;
 import com.semrush.tasks.automated.ui.components.UserMenuComponent;
 import com.semrush.tasks.automated.ui.config.ClientConfig;
-import org.testng.annotations.AfterClass;
+import com.semrush.tasks.ui.testutils.AuthorizationUtils;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
  * Contains tests for loginForm form behaviour.
  */
+@Test(groups = {"unauthorized"})
 public class LoginFormComponentTest {
 
   /**
@@ -42,13 +44,12 @@ public class LoginFormComponentTest {
         config.getActionTimeout());
   }
 
-
   /**
-   * Clean up environment.
+   * Clean authorization.
    */
-  @AfterClass
-  public void tearDown() {
-    Selenide.clearBrowserCookies();
-    Selenide.clearBrowserLocalStorage();
+  @BeforeMethod
+  @AfterMethod
+  public void cleanAuthorization() {
+    AuthorizationUtils.logout();
   }
 }
