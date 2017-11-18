@@ -4,6 +4,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.semrush.tasks.automated.ui.components.AComponent;
+import io.qameta.allure.Step;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,6 +44,7 @@ public final class ProjectListComponent extends AComponent {
    *
    * @return ProjectListComponent.
    */
+  @Step("Remove each elements in the list.")
   public ProjectListComponent clear() {
     items().forEach(projectListItemComponent -> {
       projectListItemComponent

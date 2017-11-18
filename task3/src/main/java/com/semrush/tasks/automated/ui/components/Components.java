@@ -3,6 +3,7 @@ package com.semrush.tasks.automated.ui.components;
 import com.semrush.tasks.automated.ui.components.notes.NotesComponent;
 import com.semrush.tasks.automated.ui.components.projects.ProjectsComponent;
 import com.semrush.tasks.automated.ui.utils.PageUtils;
+import io.qameta.allure.Step;
 
 
 /**
@@ -15,6 +16,7 @@ public final class Components {
    *
    * @return instance of {@link UserMenuComponent}.
    */
+  @Step("Open index page")
   public static UserMenuComponent userMenu() {
     return PageUtils.open(UserMenuComponent.class);
   }
@@ -34,6 +36,7 @@ public final class Components {
    *
    * @return DashboardComponent.
    */
+  @Step("Open component page")
   public static DashboardComponent dashboard() {
     return PageUtils.open("dashboard", DashboardComponent.class);
   }
@@ -43,6 +46,7 @@ public final class Components {
    *
    * @return DashboardComponent.
    */
+  @Step("Open projects page")
   public static ProjectsComponent projects() {
     return PageUtils.open("projects", ProjectsComponent.class);
   }
@@ -52,6 +56,7 @@ public final class Components {
    *
    * @return NotesComponent.
    */
+  @Step("Open notes page")
   public static NotesComponent notes() {
     return PageUtils.open("notes", NotesComponent.class);
   }

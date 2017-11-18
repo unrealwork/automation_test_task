@@ -1,8 +1,10 @@
 package com.semrush.tasks.automated.ui.components;
 
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -58,9 +60,12 @@ public class UserMenuComponent extends AComponent {
    *
    * @return instance of LoginFormComponent.
    */
+  @Step("Open Login form")
   public LoginFormComponent loginForm() {
     loginButton().click();
-    return new LoginFormComponent();
+    LoginFormComponent loginForm = new LoginFormComponent();
+    loginForm.root().shouldBe(visible.because("Form container should be open"));
+    return loginForm;
   }
 
   /**

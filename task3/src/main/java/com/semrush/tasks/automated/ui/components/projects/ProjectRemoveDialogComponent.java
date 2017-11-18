@@ -3,6 +3,7 @@ package com.semrush.tasks.automated.ui.components.projects;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.semrush.tasks.automated.ui.components.AComponent;
+import io.qameta.allure.Step;
 
 /**
  * Project Remove dialog UI API.
@@ -51,6 +52,7 @@ public class ProjectRemoveDialogComponent extends AComponent {
    *
    * @return Project List Component.
    */
+  @Step("Copy project name and insert to field for confirm. Then confirm form.")
   public ProjectsComponent remove() {
     confirmInput().setValue(projectNameText().getText());
     confirmButton().click();

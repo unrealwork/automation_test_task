@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Selectors.byName;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.semrush.tasks.automated.ui.config.ClientConfig;
+import io.qameta.allure.Step;
 
 /**
  * API for actions available from LoginFormComponent.
@@ -50,6 +51,7 @@ public final class LoginFormComponent extends AComponent {
    * @param email - email password.
    * @return instance of {@link LoginFormComponent}.
    */
+  @Step("Fill email field with value {email}")
   public LoginFormComponent fillEmail(final String email) {
     emailField().setValue(email);
     return this;
@@ -61,6 +63,7 @@ public final class LoginFormComponent extends AComponent {
    * @param password - value of password.
    * @return instance of {@link LoginFormComponent}
    */
+  @Step("Fill password field with value {password}")
   public LoginFormComponent fillPassword(final String password) {
     passwordField().setValue(password);
     return this;
@@ -69,6 +72,7 @@ public final class LoginFormComponent extends AComponent {
   /**
    * Submit form data.
    */
+  @Step("Click Login form submit button")
   public void submit() {
     submitButton().submit();
   }

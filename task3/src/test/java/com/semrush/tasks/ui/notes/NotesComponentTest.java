@@ -6,6 +6,8 @@ import com.semrush.tasks.automated.ui.components.Components;
 import com.semrush.tasks.automated.ui.components.notes.NotesComponent;
 import com.semrush.tasks.automated.ui.model.Note;
 import com.semrush.tasks.ui.testutils.AuthorizationUtils;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import java.lang.reflect.Method;
 import java.text.MessageFormat;
 import org.testng.annotations.AfterMethod;
@@ -22,9 +24,11 @@ public class NotesComponentTest {
    *
    * @param note note to test.
    */
+  @Feature("Note")
+  @Story("Add new note.")
   @Test(description = "Tests creation of a new note",
       dataProviderClass = NotesComponentDataProvider.class,
-      groups = {" authorized"},
+      groups = {"authorized"},
       dataProvider = "notesProvider")
   public void testAddNote(final Note note) {
     //Action
@@ -53,7 +57,8 @@ public class NotesComponentTest {
    *
    * @param method - test method.
    */
-  @AfterMethod(groups = {"authorized"})
+  @AfterMethod(description = "Remove last added note. And logout from site.",
+      groups = {"authorized"})
   public void tearDown(final Method method) {
     if ("testAddNote".equals(method.getName())) {
       Components.notes().list().last().remove();

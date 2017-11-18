@@ -4,6 +4,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.semrush.tasks.automated.ui.components.AComponent;
 import com.semrush.tasks.automated.ui.model.Note;
+import io.qameta.allure.Step;
 
 /***
  * Form for creation note.
@@ -21,6 +22,7 @@ public final class NoteCreateEditorComponent extends AComponent {
    * @param name of note.
    * @return NoteCreateEditorComponent.
    */
+  @Step("Fill note's name input with value {name}")
   public NoteCreateEditorComponent fillName(final String name) {
     nameInput().setValue(name);
     return this;
@@ -49,6 +51,7 @@ public final class NoteCreateEditorComponent extends AComponent {
   /**
    * Save note.
    */
+  @Step("Click save button.")
   public void save() {
     saveButton().click();
   }

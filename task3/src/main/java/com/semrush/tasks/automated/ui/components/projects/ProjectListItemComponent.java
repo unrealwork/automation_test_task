@@ -3,6 +3,7 @@ package com.semrush.tasks.automated.ui.components.projects;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.semrush.tasks.automated.ui.components.AComponent;
+import io.qameta.allure.Step;
 
 /**
  * Specific project Component.
@@ -50,6 +51,7 @@ public final class ProjectListItemComponent extends AComponent {
    *
    * @return project's settings.
    */
+  @Step("Open project's settings")
   public ProjectSettingsComponent openSettings() {
     settingsButton().click();
     return new ProjectSettingsComponent();
