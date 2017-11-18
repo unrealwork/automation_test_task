@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="SEMrush UI test" verbose="1">
+  <listeners>
+    <listener class-name="com.semrush.tasks.ui.testutils.ScreenshotAttachListener"/>
+  </listeners>
+  <test name="Authorized">
+    <groups>
+      <run>
+        <include name="authorized"/>
+      </run>
+    </groups>
+    <packages>
+      <package name="com.semrush.tasks.ui.*"/>
+    </packages>
+  </test>
+
+  <test name="Unauthorized">
+    <groups>
+      <run>
+        <include name="authentication"/>
+      </run>
+    </groups>
+    <packages>
+      <package name="com.semrush.tasks.ui.*"/>
+    </packages>
+  </test>
+</suite>
+

@@ -3,6 +3,7 @@ package com.semrush.tasks.automated.ui.components.notes;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.semrush.tasks.automated.ui.components.AComponent;
+import io.qameta.allure.Step;
 
 /**
  * Note's item settings.
@@ -12,6 +13,7 @@ public final class NoteItemSettingsComponent extends AComponent {
   /**
    * Remove current item.
    */
+  @Step("Confirm note removing")
   public void remove() {
     removeDialog().confirm();
   }

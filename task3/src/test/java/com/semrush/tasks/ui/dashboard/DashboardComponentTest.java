@@ -9,6 +9,8 @@ import com.semrush.tasks.automated.ui.components.projects.ProjectsComponent;
 import com.semrush.tasks.automated.ui.config.ClientConfig;
 import com.semrush.tasks.automated.ui.model.Project;
 import com.semrush.tasks.ui.testutils.AuthorizationUtils;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -23,6 +25,9 @@ public class DashboardComponentTest {
    *
    * @param project project to add.s
    */
+
+  @Feature("Project")
+  @Story("Add new project.")
   @Test(description = "Tests project's creating procedure with valid data",
       dataProviderClass = DashboardComponentProvider.class,
       dataProvider = "projectsProvider",
@@ -42,7 +47,8 @@ public class DashboardComponentTest {
   /**
    * Set up.
    */
-  @BeforeMethod(groups = {"authorized"})
+  @BeforeMethod(description = "Login to system and clear projects list.",
+      groups = {"authorized"})
   public void setUp() {
     AuthorizationUtils.login();
     Components.projects().list().clear();
@@ -51,7 +57,8 @@ public class DashboardComponentTest {
   /**
    * Clean up data.
    */
-  @AfterMethod(groups = {"authorized"})
+  @AfterMethod(description = "Clear project's list and logout",
+      groups = {"authorized"})
   public void tearDown() {
     Components.projects().list().clear();
     AuthorizationUtils.logout();

@@ -5,6 +5,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.semrush.tasks.automated.ui.components.AComponent;
 import com.semrush.tasks.automated.ui.model.Project;
+import io.qameta.allure.Step;
 
 /**
  * Form for create Project.
@@ -36,6 +37,7 @@ public final class ProjectCreateFormComponent extends AComponent {
    *
    * @return instance of {@link SelenideElement}
    */
+  @Step("Submit project creation")
   public SelenideElement submitButton() {
     return find("span.s-btn__text");
   }
@@ -52,6 +54,7 @@ public final class ProjectCreateFormComponent extends AComponent {
    * @param name name of project.
    * @return this component;
    */
+  @Step("Fill project name with value{name}")
   public ProjectCreateFormComponent fillName(final String name) {
     nameField().setValue(name);
     return this;
@@ -64,6 +67,7 @@ public final class ProjectCreateFormComponent extends AComponent {
    * @param domain name of project.
    * @return this component;
    */
+  @Step("Fill domain field with value {domain}")
   public ProjectCreateFormComponent fillDomain(final String domain) {
     domainField().setValue(domain);
     return this;

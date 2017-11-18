@@ -49,12 +49,12 @@ mvn clean test
 Для генерации отчета нужно выполнить следующую команду:
 
 ```text
-mvn clean site
+mvn clean test
 ```
 
 Затем можно просмотреть текущий отчет в браузере, страница будет открыта после 
 выполнения команды :
 
 ```text
-mvn io.qameta.allure:allure-maven:serve
+mvn allure:serve
 ```
