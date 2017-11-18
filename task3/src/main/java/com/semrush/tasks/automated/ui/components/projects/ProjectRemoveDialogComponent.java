@@ -1,11 +1,8 @@
 package com.semrush.tasks.automated.ui.components.projects;
 
-import static com.codeborne.selenide.Condition.exist;
-
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.semrush.tasks.automated.ui.components.AComponent;
-import com.semrush.tasks.automated.ui.config.ClientConfig;
 
 /**
  * Project Remove dialog UI API.
@@ -59,8 +56,6 @@ public class ProjectRemoveDialogComponent extends AComponent {
     confirmButton().click();
 
     ProjectsComponent component = new ProjectsComponent();
-    component.root()
-        .waitUntil(exist, ClientConfig.getDefault().getActionTimeout());
     return component;
   }
 

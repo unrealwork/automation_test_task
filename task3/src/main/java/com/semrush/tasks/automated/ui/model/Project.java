@@ -1,5 +1,7 @@
 package com.semrush.tasks.automated.ui.model;
 
+import com.semrush.tasks.automated.ui.utils.CommonUtils;
+
 /**
  * Project's model.
  */
@@ -41,5 +43,18 @@ public class Project {
    */
   public String getName() {
     return name;
+  }
+
+
+
+
+  /**
+   * JSON representation of Project.
+   *
+   * @return JSON.
+   */
+  @Override
+  public String toString() {
+    return CommonUtils.toJson(this);
   }
 }
