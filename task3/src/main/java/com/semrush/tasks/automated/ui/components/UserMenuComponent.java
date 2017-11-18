@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 /**
  * API of user menu.
  */
-public class UserMenuComponent {
+public class UserMenuComponent extends AComponent {
 
   /**
    * Logger for this class.
@@ -29,7 +29,8 @@ public class UserMenuComponent {
    *
    * @return instance of {@link SelenideElement}
    */
-  public SelenideElement container() {
+  @Override
+  public SelenideElement root() {
     return $("div.header");
   }
 
@@ -60,5 +61,41 @@ public class UserMenuComponent {
   public LoginFormComponent loginForm() {
     loginButton().click();
     return new LoginFormComponent();
+  }
+
+  /**
+   * Open menu.
+   *
+   * @return this instance.
+   */
+  public UserMenuComponent open() {
+    toggleElement().click();
+    return this;
+  }
+
+  /**
+   * Log out.
+   */
+
+  public void logout() {
+    open().logoutItem().click();
+  }
+
+  /**
+   * Logout item of menu.
+   *
+   * @return page element.
+   */
+  private SelenideElement logoutItem() {
+    return find("a[data-test=header-menu__user-logout]");
+  }
+
+  /**
+   * Toggle user menu.
+   *
+   * @return page element.
+   */
+  private SelenideElement toggleElement() {
+    return find("div[data-js-dropdown-toggle=-open]");
   }
 }

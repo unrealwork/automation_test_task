@@ -3,7 +3,7 @@
     <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
       <evaluator>
         <expression>
-          return logger.contains("org.apache.http") ||
+          return logger.contains("org.apache") ||
           logger.equals("org.jvnet.hk2.logger");
         </expression>
       </evaluator>

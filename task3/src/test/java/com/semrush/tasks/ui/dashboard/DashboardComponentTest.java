@@ -8,6 +8,7 @@ import com.semrush.tasks.automated.ui.components.projects.ProjectCreateFormCompo
 import com.semrush.tasks.automated.ui.components.projects.ProjectsComponent;
 import com.semrush.tasks.automated.ui.config.ClientConfig;
 import com.semrush.tasks.automated.ui.model.Project;
+import com.semrush.tasks.ui.testutils.AuthorizationUtils;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -15,17 +16,22 @@ import org.testng.annotations.Test;
 /**
  * DashboardComponent component's tests.
  */
-@Test(groups = {"authorized"})
 public class DashboardComponentTest {
 
   /**
    * Tests project's creating procedure with valid data.
+   *
+   * @param project project to add.s
    */
-  @Test(description = "Tests project's creating procedure with valid data")
-  public void testAddProject() {
+  @Test(description = "Tests project's creating procedure with valid data",
+      dataProviderClass = DashboardComponentProvider.class,
+      dataProvider = "projectsProvider",
+      groups = {"authorized"}
+  )
+  public void testAddProject(final Project project) {
     ProjectCreateFormComponent addingForm = Components.dashboard()
         .createProject();
-    addingForm.add(new Project("google.com", "a"));
+    addingForm.add(project);
     final ClientConfig config = ClientConfig.getDefault();
     SelenideElement root = new ProjectsComponent().root();
     root.waitUntil(visible.because(
@@ -33,13 +39,21 @@ public class DashboardComponentTest {
     ), config.getActionTimeout());
   }
 
+  /**
+   * Set up.
+   */
+  @BeforeMethod(groups = {"authorized"})
+  public void setUp() {
+    AuthorizationUtils.login();
+    Components.projects().list().clear();
+  }
 
   /**
    * Clean up data.
    */
-  @AfterMethod
-  @BeforeMethod
-  public void cleanProjects() {
+  @AfterMethod(groups = {"authorized"})
+  public void tearDown() {
     Components.projects().list().clear();
+    AuthorizationUtils.logout();
   }
 }

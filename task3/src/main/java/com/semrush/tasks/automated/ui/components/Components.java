@@ -1,5 +1,6 @@
 package com.semrush.tasks.automated.ui.components;
 
+import com.semrush.tasks.automated.ui.components.notes.NotesComponent;
 import com.semrush.tasks.automated.ui.components.projects.ProjectsComponent;
 import com.semrush.tasks.automated.ui.utils.PageUtils;
 
@@ -44,6 +45,15 @@ public final class Components {
    */
   public static ProjectsComponent projects() {
     return PageUtils.open("projects", ProjectsComponent.class);
+  }
+
+  /**
+   * Notes Component page creation.
+   *
+   * @return NotesComponent.
+   */
+  public static NotesComponent notes() {
+    return PageUtils.open("notes", NotesComponent.class);
   }
 
   /**

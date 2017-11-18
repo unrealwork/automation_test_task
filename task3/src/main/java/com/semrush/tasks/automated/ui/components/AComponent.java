@@ -1,5 +1,6 @@
 package com.semrush.tasks.automated.ui.components;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
@@ -34,4 +35,27 @@ public abstract class AComponent {
   public SelenideElement find(final By by) {
     return root().$(by);
   }
+
+  /**
+   * Find element inside component.
+   *
+   * @param by By selector.
+   * @return instance of {@link SelenideElement}
+   */
+  public ElementsCollection findCollection(final By by) {
+    return root().$$(by);
+  }
+
+
+
+  /**
+   * Find element inside component.
+   *
+   * @param cssSelector СSS selector.
+   * @return instance of {@link SelenideElement}
+   */
+  public ElementsCollection findCollection(final String cssSelector) {
+    return root().$$(cssSelector);
+  }
+
 }
