@@ -2,6 +2,7 @@ package com.semrush.tasks.automation.api.services.temperature;
 
 import com.semrush.tasks.automation.api.ShipServiceManager;
 import com.semrush.tasks.automation.api.services.TemperatureService;
+import com.semrush.tasks.automation.api.utils.HttpStatus;
 import com.semrush.tasks.automation.model.WaterEnvironment;
 import com.semrush.tasks.automation.model.WaterState;
 import java.io.IOException;
@@ -10,13 +11,25 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import retrofit2.Call;
 
-@Test(description = "Tests for Temperature Service on SpaceShip")
+/**
+ * Temperature tests.
+ */
 public class TemperatureServiceTest {
 
+  /**
+   * Instance of temperature service that implement HTTP API.
+   */
   private TemperatureService service = ShipServiceManager
       .getService(TemperatureService.class);
 
-
+  /**
+   * Test for correctness of HTTP statuses for different values.
+   *
+   * @param value {@link String} value
+   * @param expectedCode expected HTTTP status code
+   * @param reason reason
+   * @throws IOException with connection problem.
+   */
   @Test(description = "Test correctness of HTTP statuses for different inputs",
       dataProviderClass = TemperatureServiceDataProvider.class,
       dataProvider = "statusProvider")
@@ -38,17 +51,25 @@ public class TemperatureServiceTest {
   }
 
 
+  /**
+   * Test water state for correct values of temp.
+   *
+   * @param temperature - floating value of temperature.
+   * @param expectedState - expected water state.
+   * @param reason reason
+   * @throws IOException with connection problem.
+   */
   @Test(description = "Test correctness of environment state depends on "
       + "temperature",
       dataProviderClass = TemperatureServiceDataProvider.class,
       dataProvider = "correctStatesProvider")
-  public void testCorrectStates(final Integer temperature,
+  public void testCorrectStates(final int temperature,
       final WaterState expectedState,
       final String reason)
       throws IOException {
     //Act
     Call<WaterEnvironment> call = service
-        .getEnvironment(temperature.toString());
+        .getEnvironment(Integer.toString(temperature));
     final WaterState actualState = call
         .execute()
         .body()
@@ -67,14 +88,19 @@ public class TemperatureServiceTest {
     Assert.assertEquals(actualState, expectedState, assertMessage);
   }
 
-
+  /**
+   * Test that API handle incorrect numeric temparature values.
+   *
+   * @param temperature - value of temperature.
+   * @param reason reason
+   * @throws IOException with connection problem.
+   */
   @Test(description = "Test validation of incorrect temperature value"
       + "temperature",
       dataProviderClass = TemperatureServiceDataProvider.class,
       dataProvider = "incorrectStatesProvider")
-  public void testIncorrectStates(final Double temperature, final String reason)
+  public void testIncorrectStates(final Long temperature, final String reason)
       throws IOException {
-    final int badRequestCode = 400;
 
     //Act
     Call<WaterEnvironment> call = service
@@ -89,8 +115,9 @@ public class TemperatureServiceTest {
     int actualCode = call.execute().code();
     final String assertMessage = MessageFormat.format(
         assertMessageTemplate,
-        call.request(), temperature, reason, actualCode, badRequestCode);
+        call.request(), temperature, reason, actualCode,
+        HttpStatus.BAD_REQUEST);
 
-    Assert.assertEquals(actualCode, badRequestCode, assertMessage);
+    Assert.assertEquals(actualCode, HttpStatus.BAD_REQUEST, assertMessage);
   }
 }
