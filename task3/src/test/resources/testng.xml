@@ -3,7 +3,10 @@
 
 <suite name="SEMrush UI test" verbose="1">
   <listeners>
-    <listener class-name="com.semrush.tasks.ui.testutils.ScreenshotAttachListener"/>
+    <listener
+      class-name="com.semrush.tasks.ui.testutils.ScreenshotAttachListener"/>
+    <listener
+      class-name="com.semrush.tasks.ui.testutils.EnvironmentInfoListener"/>
   </listeners>
   <test name="Authorized">
     <groups>

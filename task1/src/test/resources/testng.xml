@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="SpaceShip API tests" verbose="1">
+  <listeners>
+    <listener
+      class-name="com.semrush.tasks.automation.api.utils.EnvironmentInfoListener"/>
+  </listeners>
+  <test name="Environmental tests">
+    <classes>
+      <class
+        name="com.semrush.tasks.automation.api.services.temperature.TemperatureServiceTest"/>
+    </classes>
+  </test>
+</suite>
